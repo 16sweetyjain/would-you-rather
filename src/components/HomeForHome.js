@@ -8,12 +8,15 @@ class HomeForHome extends Component {
     }
 
     render() {
+        const { answered, unanswered } = this.props;
 
-        console.log(this.props)
-        const {users,authedUser,questions,answers}= this.props;
-       // const ans=users[authedUser]
-        
-     //  console.log(ans)
+        const ans = answered.map(qid =>
+            <QuestionComponent id={qid} />)
+
+        const unans = unanswered.map(qid =>
+            <QuestionComponent id={qid} />)
+
+            
         return (
             <div>
                 Hi
@@ -23,13 +26,20 @@ class HomeForHome extends Component {
 }
 
 function mapStateToProps({ users, questions, authedUser }) {
-    const user=users[authedUser];
-    const answers=user[answers];
+    const user = users[authedUser];
+
+    const answered = Object.keys(user.answers)
+        .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+
+    const unanswered = Object.keys(questions).filter(qid =>
+        !answered.includes(qid))
+        .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
     return {
-        authedUser, users, questions,answers
+        answered, unanswered
     }
 }
+
 
 function mapDispatchToProps(dispatch) {
     return {
