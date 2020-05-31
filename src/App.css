@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+.signIn{
+  color: DodgerBlue;
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+
+.signInForm{
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+
+.home{
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+}
+
+.button{
+  padding: 40px;
+  font-family: Arial;
+  text-align: center;
+  margin-left: 150px
+}
