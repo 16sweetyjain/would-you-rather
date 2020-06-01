@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleSaveAnswer } from '../actions/shared'
+import QuestionComponent from './QuestionComponent';
 
 class HomeForHome extends Component {
     constructor(props) {
@@ -8,18 +9,32 @@ class HomeForHome extends Component {
     }
 
     render() {
+       // console.log(this.props);
         const { answered, unanswered } = this.props;
 
-        const ans = answered.map(qid =>
-            <QuestionComponent id={qid} />)
+        const ans = answered.map(qid =>{
+           // console.log(qid)
+        return (
+            <QuestionComponent id={qid} />
+        )
+        })
 
         const unans = unanswered.map(qid =>
             <QuestionComponent id={qid} />)
 
-            
+
         return (
-            <div>
-                Hi
+            <div >
+                <div>
+               unanswered:->
+                    {unans}
+                </div>
+                <div>
+                    answered:->
+               
+                    {ans}
+                </div>
+
             </div>
         );
     }
@@ -27,6 +42,8 @@ class HomeForHome extends Component {
 
 function mapStateToProps({ users, questions, authedUser }) {
     const user = users[authedUser];
+    const uid = user.id
+    // console.log(uid)
 
     const answered = Object.keys(user.answers)
         .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
@@ -36,6 +53,7 @@ function mapStateToProps({ users, questions, authedUser }) {
         .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
     return {
+
         answered, unanswered
     }
 }
