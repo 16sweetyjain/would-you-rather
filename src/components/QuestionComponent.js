@@ -1,30 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap'
+
 
 class Question extends Component {
     constructor(props) {
         super(props);
 
-
-        this.handleClick=this.handleClick.bind(this)
-    }
-
-    handleClick(){
+        this.loadQuestionDetails = this.loadQuestionDetails.bind(this);
 
     }
+
+    loadQuestionDetails(e,questionId) {
+       
+        let path = `/questions/` + questionId;
+        this.props.history.push(path);
+    }
+
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         const { question } = this.props
-       
+
 
         return (
             <div>
                 <div className='signIn'>
-                    <Card>
-                        <CardTitle>Would you rather</CardTitle>
+                <Card onClick={(e) => this.loadQuestionDetails(e, question.id)}>
                         <CardBody>
+                            <CardTitle>Would you rather</CardTitle>
 
                             <ul>
 
@@ -39,10 +44,7 @@ class Question extends Component {
 
 
                             </ul>
-                            <button onClick={this.handleClick}> View Poll</button>
-
-
-
+                            <button> View poll</button>
 
                         </CardBody>
                     </Card>
@@ -61,4 +63,4 @@ function mapStateToProps(state, { id }) {
 
     }
 }
-export default connect(mapStateToProps)(Question);
+export default withRouter(connect(mapStateToProps)(Question));

@@ -10,7 +10,8 @@ import Home from './components/HomeComponent';
 import Create from './components/CreateQuestion';
 import Homi from './components/HomeForHome'
 import Leaderboard from './components/Leaderboard';
-import Logout from './components/Logout'
+import Logout from './components/Logout';
+import QuestionDetails from './components/QuestionDetails';
 
 
 
@@ -18,21 +19,21 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-   
 
-    
+
+
   }
 
 
   componentDidMount() {
     this.props.dispatch(handleInitialStateForQuestions());
     this.props.dispatch(handleInitialStateForUsers());
-   
+
 
   }
-  
+
   render() {
-   // console.log(this.state.authUser);
+    // console.log(this.state.authUser);
 
     const HomeComponent = () => {
       return (
@@ -41,14 +42,14 @@ class App extends Component {
     }
     const SignInComponent = () => {
       return (
-        <SignIn  />
+        <SignIn />
       )
 
     }
 
     const CreateComponent = () => {
       return (
-        <Create  />
+        <Create />
       );
     }
 
@@ -69,17 +70,24 @@ class App extends Component {
       );
     }
 
- 
+    const QuestionDetails=()=>{
+      return(
+        <QuestionDetails/>
+      )
+    }
+
+
     return (
       <div>
 
         <Switch>
-          <Route  exact path='/home' component={HomeComponent} />
+          <Route exact path='/home' component={HomeComponent} />
           <Route exact path='/signIn' component={SignInComponent} />
           <Route exact path='/create' component={CreateComponent} />
           <Route exact path='/home_ans' component={HomeiComponent} />
           <Route exact path='/leaderboard' component={LeaderboardComponent} />
-          <Route exact  path='/logout' component={LogoutComponent} />
+          <Route exact path='/logout' component={LogoutComponent} />
+          <Route path='/questions/:id' component={QuestionDetails} />
           <Redirect to='/signIn' />
 
 

@@ -7,9 +7,10 @@ export function questions(state = {}, action) {
             };
 
         case 'ADD_QUESTION':
+            const {question}=action
             return {
                 ...state,
-                [action.payload.id]: action.payload
+               [question.id]:question
             }
 
         case 'SAVE_QUESTION_ANSWER':

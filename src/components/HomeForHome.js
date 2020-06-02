@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleSaveAnswer } from '../actions/shared'
+
 import QuestionComponent from './QuestionComponent';
 
 class HomeForHome extends Component {
@@ -15,12 +15,12 @@ class HomeForHome extends Component {
         const ans = answered.map(qid =>{
            // console.log(qid)
         return (
-            <QuestionComponent id={qid} />
+            <QuestionComponent  key={qid} id={qid} />
         )
         })
 
         const unans = unanswered.map(qid =>
-            <QuestionComponent id={qid} />)
+            <QuestionComponent key={qid} id={qid} />)
 
 
         return (
@@ -59,13 +59,6 @@ function mapStateToProps({ users, questions, authedUser }) {
 }
 
 
-function mapDispatchToProps(dispatch) {
-    return {
-        handleSave: (qid, option) => {
-            dispatch(handleSaveAnswer(qid, option))
-        }
-    }
 
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeForHome)
+export default connect(mapStateToProps)(HomeForHome)

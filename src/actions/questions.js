@@ -10,7 +10,7 @@ export function getQuestions(questions) {
 export function addQuestion(question){
     return{
         type:'ADD_QUESTION',
-        payload:question
+        question
     }
 }
 
