@@ -27,10 +27,10 @@ class QuestionDetail extends Component {
     }
     render() {
 
-        console.log(this.state.selected)
-        const { question } = this.props;
+       // console.log(this.state.selected)
+        const { question,total,percTwo,percOne } = this.props;
         const qid = question.id
-
+console.log(qid);
 
 
 
@@ -88,13 +88,15 @@ class QuestionDetail extends Component {
                     <div>
                         {question.optionOne.text}
 
-                        {question.optionOne.votes} out of 3
+                        {question.optionOne.votes.length} out of 3
+                        {percOne} of {total}
                     </div>
 
 
                     <div>
                         {question.optionTwo.text}
-                        {question.optionTwo.votes} out of 3
+                        {question.optionTwo.votes.length} out of 3
+                        {percTwo} of {total}
                     </div>
 
 
@@ -110,7 +112,9 @@ class QuestionDetail extends Component {
 }
 
 
-
+function financial(x) {
+    return Number.parseFloat(x).toFixed(2);
+  }
 function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
 
     const id = ownProps.match.params.id;
@@ -118,10 +122,12 @@ function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
 
 
     const question = questions[id]
-
-
+let total,percOne,percTwo;
+    total = question.optionOne.votes.length + question.optionTwo.votes.length;
+    percOne = financial((question.optionOne.votes.length / total) * 100);
+    percTwo = financial((question.optionTwo.votes.length / total) * 100);
     return {
-        question
+        question,total,percOne,percTwo
     }
 }
 

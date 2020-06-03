@@ -14,7 +14,6 @@ import Logout from './components/Logout';
 import QuestionDetails from './components/QuestionDetails';
 
 
-
 class App extends Component {
 
   constructor(props) {
@@ -60,13 +59,13 @@ class App extends Component {
 
     const LeaderboardComponent = () => {
       return (
-        <Leaderboard user={this.state.authUser} />
+        <Leaderboard  />
       );
     }
 
     const LogoutComponent = () => {
       return (
-        <Logout user={this.state.authUser} />
+        <Logout  />
       );
     }
 

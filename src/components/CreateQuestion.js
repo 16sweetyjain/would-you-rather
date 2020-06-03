@@ -25,14 +25,13 @@ class CreateQuestion extends Component {
     }
 
     handleCreate() {
-      //  console.log("option1 :", this.state.option1);
-      //  console.log("option2 :", this.state.option2);
+     
       this.props.addQuestion(this.state.option1,this.state.option2);
 
     }
     render() {
 
-      // console.log(this.props)
+   
 
        const {authedUser}=this.props
 
