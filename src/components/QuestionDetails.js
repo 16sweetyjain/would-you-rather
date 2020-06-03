@@ -10,7 +10,8 @@ class QuestionDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selected: null
+            selected: null,
+            answer: false
         }
         this.handleClick = this.handleClick.bind(this);
         this.onValueChange = this.onValueChange.bind(this);
@@ -18,6 +19,7 @@ class QuestionDetail extends Component {
 
     handleClick(qid) {
         this.props.handleSave(qid, this.state.selected)
+        this.setState({ answer: true })
     }
 
     onValueChange(e) {
@@ -28,49 +30,85 @@ class QuestionDetail extends Component {
         console.log(this.state.selected)
         const { question } = this.props;
         const qid = question.id
-       
 
-        return (
-            <div className="signIn">
-                <div>
-                    <h1> Would you rather </h1>
+
+
+
+        if (this.state.answer === false) {
+            return (
+                <div className="signIn">
+                    <div>
+                        {question.author} asks
                 </div>
-                <form onSubmit={() => this.handleClick(qid)}>
-                    <div className="radio">
-                        <label>
-                            <input
-                                type="radio"
-                                value="OptionOne"
-                                checked={this.state.selected === "OptionOne"}
-                                onChange={this.onValueChange}
-
-                            />
-                            {question.optionOne.text}
-                        </label>
+                    <div>
+                        <h1> Would you rather </h1>
                     </div>
-                    <div className="radio">
-                        <label>
-                            <input
-                                type="radio"
-                                value="OptionTwo"
-                                checked={this.state.selected === "OptionTwo"}
-                                onChange={this.onValueChange}
-                            />
-                            {question.optionTwo.text}
-                        </label>
-                    </div>
+                    <form onSubmit={() => this.handleClick(qid)}>
+                        <div className="radio">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="OptionOne"
+                                    checked={this.state.selected === "OptionOne"}
+                                    onChange={this.onValueChange}
+
+                                />
+                                {question.optionOne.text}
+                            </label>
+                        </div>
+                        <div className="radio">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="OptionTwo"
+                                    checked={this.state.selected === "OptionTwo"}
+                                    onChange={this.onValueChange}
+                                />
+                                {question.optionTwo.text}
+                            </label>
+                        </div>
 
 
-                    <button className="btn btn-default" type="submit">
-                        Submit
+                        <button className="btn btn-default" type="submit">
+                            Submit
         </button>
-                </form>
-            </div>
+                    </form>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div>
+                    <div>
+                        <h1>
+                            Would you rather
+                            </h1>
+                    </div>
+
+                    <div>
+                        {question.optionOne.text}
+
+                        {question.optionOne.votes} out of 3
+                    </div>
 
 
-        );
+                    <div>
+                        {question.optionTwo.text}
+                        {question.optionTwo.votes} out of 3
+                    </div>
+
+
+                </div>
+            );
+        }
+
     }
+
+
+
+
 }
+
 
 
 function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {

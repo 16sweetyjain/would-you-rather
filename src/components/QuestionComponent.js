@@ -31,28 +31,35 @@ class Question extends Component {
 
         return (
             <div>
-                <div className='signIn'>
+                <div >
                     <Card >
                         <CardBody>
-                            <CardTitle>Would you rather</CardTitle>
-
-                            <ul>
-
-                                <li>
-                                    {question.optionOne.text}
-                                </li>
+                            <div>
+                             {question.author} asks
+                            </div>
+                            <div className="signIn">
 
 
-                                <li>
-                                    {question.optionTwo.text}
-                                </li>
+                                <CardTitle>Would you rather</CardTitle>
+
+                                <ul>
+
+                                    <li>
+                                        {question.optionOne.text}
+                                    </li>
 
 
-                            </ul>
-                            <Link to={`/questions/${id}`}>
-                                <button onClick={(e) => this.loadQuestionDetails(e, question.id)}> View poll</button>
-                            </Link>
+                                    <li>
+                                        {question.optionTwo.text}
+                                    </li>
 
+
+                                </ul>
+                                <Link to={`/questions/${id}`}>
+                                    <button onClick={(e) => this.loadQuestionDetails(e, question.id)}> View poll</button>
+                                </Link>
+
+                            </div>
                         </CardBody>
                     </Card>
                 </div>
