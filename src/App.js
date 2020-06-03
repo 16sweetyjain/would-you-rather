@@ -70,7 +70,7 @@ class App extends Component {
       );
     }
 
-    const QuestionDetails=()=>{
+    const QuestionDetailsComponent=()=>{
       return(
         <QuestionDetails/>
       )
@@ -87,7 +87,9 @@ class App extends Component {
           <Route exact path='/home_ans' component={HomeiComponent} />
           <Route exact path='/leaderboard' component={LeaderboardComponent} />
           <Route exact path='/logout' component={LogoutComponent} />
-          <Route path='/questions/:id' component={QuestionDetails} />
+          <Route path='/questions/:id'  component={QuestionDetailsComponent} />
+          exact 
+    
           <Redirect to='/signIn' />
 
 

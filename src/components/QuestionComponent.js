@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter,useLocation } from 'react-router-dom';
 import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap'
-
+import PropTypes from 'prop-types';
 
 class Question extends Component {
     constructor(props) {
@@ -13,6 +13,8 @@ class Question extends Component {
     }
 
     loadQuestionDetails(e,questionId) {
+     //  console.log(this.props.history)
+      
        
         let path = `/questions/` + questionId;
         this.props.history.push(path);
@@ -20,6 +22,9 @@ class Question extends Component {
 
 
     render() {
+      
+
+
         // console.log(this.props);
         const { question } = this.props
 
@@ -63,4 +68,9 @@ function mapStateToProps(state, { id }) {
 
     }
 }
+
+Question.propTypes = {
+    question: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
 export default withRouter(connect(mapStateToProps)(Question));
