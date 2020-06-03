@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {formatQuestion} from '../_DATA.js';
 import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions/shared'
+import { Link } from 'react-router-dom';
 
 
 class CreateQuestion extends Component {
@@ -41,7 +42,7 @@ class CreateQuestion extends Component {
             <div>
                 <div className='signIn'> asked by {authedUser} </div>
                 <div className='signIn'>
-                    <form onSubmit={this.handleSubmit}>
+                    <form >
                         <div className='signIn'>
 
                             <label>
@@ -56,8 +57,9 @@ class CreateQuestion extends Component {
                          <input type="text" name="option2" value={this.state.option2} onChange={this.handleOption2} />
                             </label>
                         </div>
+                        <Link to='/home'>
                         <button className='button' onClick={this.handleCreate} > create question</button>
-
+                        </Link>
                     </form>
                 </div>
 

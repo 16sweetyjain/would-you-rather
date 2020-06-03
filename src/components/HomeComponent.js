@@ -26,7 +26,7 @@ class Home extends Component {
                         <Link to='/leaderboard'>Leaderboard</Link>
                     </div>
                     <div className='home'>
-                        <Link to='/logout'>Logout</Link>
+                        <Link to='/signIn'>Logout</Link>
                     </div>
 
                 </div>

@@ -10,7 +10,6 @@ import Home from './components/HomeComponent';
 import Create from './components/CreateQuestion';
 import Homi from './components/HomeForHome'
 import Leaderboard from './components/Leaderboard';
-import Logout from './components/Logout';
 import QuestionDetails from './components/QuestionDetails';
 
 
@@ -63,12 +62,7 @@ class App extends Component {
       );
     }
 
-    const LogoutComponent = () => {
-      return (
-        <Logout  />
-      );
-    }
-
+    
     const QuestionDetailsComponent=()=>{
       return(
         <QuestionDetails/>
@@ -85,7 +79,6 @@ class App extends Component {
           <Route exact path='/create' component={CreateComponent} />
           <Route exact path='/home_ans' component={HomeiComponent} />
           <Route exact path='/leaderboard' component={LeaderboardComponent} />
-          <Route exact path='/logout' component={LogoutComponent} />
           <Route path='/questions/:id'  component={QuestionDetailsComponent} />
           exact 
     
