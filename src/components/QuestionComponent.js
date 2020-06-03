@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter, useLocation } from 'react-router-dom';
 import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap'
 import PropTypes from 'prop-types';
-
+import Navbar from './Navbar';
 class Question extends Component {
     constructor(props) {
         super(props);
@@ -31,6 +31,7 @@ class Question extends Component {
 
         return (
             <div>
+                
                 <div >
                     <Card >
                         <CardBody>

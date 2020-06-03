@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import QuestionComponent from './QuestionComponent';
+import Navbar from './Navbar';
 
 class HomeForHome extends Component {
     constructor(props) {
@@ -25,6 +26,9 @@ class HomeForHome extends Component {
 
         return (
             <div >
+                <div>
+                    <Navbar/>
+                </div>
                 <div>
                unanswered:->
                     {unans}

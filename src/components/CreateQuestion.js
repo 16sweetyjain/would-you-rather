@@ -3,6 +3,8 @@ import {formatQuestion} from '../_DATA.js';
 import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions/shared'
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
+
 
 
 class CreateQuestion extends Component {
@@ -40,6 +42,9 @@ class CreateQuestion extends Component {
 
         return (
             <div>
+                <div>
+                    <Navbar/>
+                </div>
                 <div className='signIn'> asked by {authedUser} </div>
                 <div className='signIn'>
                     <form >

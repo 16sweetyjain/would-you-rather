@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Navbar from './Navbar';
 
 class Home extends Component {
     constructor(props) {
@@ -8,26 +9,15 @@ class Home extends Component {
     }
     render() {
 
-        const {user}=this.props
+        const {autheduser}=this.props
         return (
             <div>
                 <div>
-                    <h1>{user}</h1>
+                    <h1>{autheduser}</h1>
                 </div>
                
                 <div className='home'>
-                    <div className='home'>
-                        <Link to='/home_ans'>Home</Link>
-                    </div>
-                    <div className='home'>
-                        <Link to='/create'>Create Question</Link>
-                    </div>
-                    <div className='home'>
-                        <Link to='/leaderboard'>Leaderboard</Link>
-                    </div>
-                    <div className='home'>
-                        <Link to='/signIn'>Logout</Link>
-                    </div>
+                   <Navbar/>
 
                 </div>
 

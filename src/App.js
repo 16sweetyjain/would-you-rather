@@ -13,6 +13,7 @@ import Leaderboard from './components/Leaderboard';
 import QuestionDetails from './components/QuestionDetails';
 
 
+
 class App extends Component {
 
   constructor(props) {
@@ -31,7 +32,7 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.authUser);
+   
 
     const HomeComponent = () => {
       return (
@@ -72,16 +73,15 @@ class App extends Component {
 
     return (
       <div>
+        
 
         <Switch>
           <Route exact path='/home' component={HomeComponent} />
           <Route exact path='/signIn' component={SignInComponent} />
-          <Route exact path='/create' component={CreateComponent} />
+          <Route exact path='/add' component={CreateComponent} />
           <Route exact path='/home_ans' component={HomeiComponent} />
           <Route exact path='/leaderboard' component={LeaderboardComponent} />
           <Route path='/questions/:id'  component={QuestionDetailsComponent} />
-          exact 
-    
           <Redirect to='/signIn' />
 
 
@@ -96,9 +96,13 @@ class App extends Component {
   }
 }
 
+function mapStateToProps({authedUser}){
+  return{authedUser}
+}
 
 
 
 
 
-export default connect()(App);
+
+export default connect(mapStateToProps)(App);

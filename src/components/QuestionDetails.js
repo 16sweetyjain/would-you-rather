@@ -4,7 +4,7 @@ import { Link, withRouter, useLocation } from 'react-router-dom';
 
 import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap';
 import { handleSaveAnswer } from '../actions/shared';
-
+import Navbar from './Navbar';
 class QuestionDetail extends Component {
 
     constructor(props) {
@@ -27,16 +27,20 @@ class QuestionDetail extends Component {
     }
     render() {
 
-       // console.log(this.state.selected)
-        const { question,total,percTwo,percOne } = this.props;
+        const { question, total, voteForTwo, votesForOne } = this.props;
         const qid = question.id
-console.log(qid);
+
+        console.log(question)
+
 
 
 
         if (this.state.answer === false) {
             return (
                 <div className="signIn">
+                    <div>
+                        <Navbar />
+                    </div>
                     <div>
                         {question.author} asks
                 </div>
@@ -48,8 +52,8 @@ console.log(qid);
                             <label>
                                 <input
                                     type="radio"
-                                    value="OptionOne"
-                                    checked={this.state.selected === "OptionOne"}
+                                    value="optionOne"
+                                    checked={this.state.selected === "optionOne"}
                                     onChange={this.onValueChange}
 
                                 />
@@ -60,8 +64,8 @@ console.log(qid);
                             <label>
                                 <input
                                     type="radio"
-                                    value="OptionTwo"
-                                    checked={this.state.selected === "OptionTwo"}
+                                    value="optionTwo"
+                                    checked={this.state.selected === "optionTwo"}
                                     onChange={this.onValueChange}
                                 />
                                 {question.optionTwo.text}
@@ -80,23 +84,37 @@ console.log(qid);
             return (
                 <div>
                     <div>
+                        <Navbar />
+                    </div>
+                    <div>
                         <h1>
                             Would you rather
                             </h1>
                     </div>
 
                     <div>
-                        {question.optionOne.text}
+                        <div>
+                            {question.optionOne.text}
 
-                        {question.optionOne.votes.length} out of 3
-                        {percOne} of {total}
+                        </div>
+
+                        <div>
+                            {votesForOne} out of 3
+                       </div>
+
+
                     </div>
 
 
                     <div>
-                        {question.optionTwo.text}
-                        {question.optionTwo.votes.length} out of 3
-                        {percTwo} of {total}
+                        <div>
+                            {question.optionTwo.text}
+                        </div>
+                        <div>
+                            {votesForOne} out of 3
+                       </div>
+
+
                     </div>
 
 
@@ -114,7 +132,7 @@ console.log(qid);
 
 function financial(x) {
     return Number.parseFloat(x).toFixed(2);
-  }
+}
 function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
 
     const id = ownProps.match.params.id;
@@ -122,12 +140,13 @@ function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
 
 
     const question = questions[id]
-let total,percOne,percTwo;
+    const votesForOne = question.optionOne.votes.length;
+    const voteForTwo = question.optionTwo.votes.length
+    let total, percOne, percTwo;
     total = question.optionOne.votes.length + question.optionTwo.votes.length;
-    percOne = financial((question.optionOne.votes.length / total) * 100);
-    percTwo = financial((question.optionTwo.votes.length / total) * 100);
+
     return {
-        question,total,percOne,percTwo
+        question, total, voteForTwo, votesForOne
     }
 }
 
