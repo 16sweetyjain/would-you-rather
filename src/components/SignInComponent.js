@@ -43,7 +43,7 @@ class SignIn extends Component {
 
 
 
-                    <select  defaultValue="choose" value={this.state.userName} onChange={this.handleChange} >
+                    <select   value={this.state.userName} onChange={this.handleChange} >
                         <option  value=" choose" >Choose one user..</option>
                         {this.props.userId.map((user) => {
                             return (

@@ -11,7 +11,7 @@ class CreateQuestion extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            option1: null, option2: null
+            option1: '', option2: ''
         }
         this.handleOption1 = this.handleOption1.bind(this);
         this.handleOption2 = this.handleOption2.bind(this);

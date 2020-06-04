@@ -31,7 +31,7 @@ class QuestionDetail extends Component {
         console.log(this.props)
         if (this.props === null) {
             return (
-                <Redirect to='error' />
+                <Redirect to='/error' />
             )
         }
 
@@ -41,13 +41,15 @@ class QuestionDetail extends Component {
 
 
         else {
-            const { question, total, voteForTwo, votesForOne, isWrong } = this.props;
-            let qid, author, optionOne, optionTwo;
+            const { question, total, voteForTwo, votesForOne, percentOne, percentTwo } = this.props;
+            let qid, author, optionOne, optionTwo, total_votes;
             if (question != undefined) {
                 qid = question.id
                 author = question.author
                 optionOne = question.optionOne.text
                 optionTwo = question.optionTwo.text
+                total_votes = votesForOne + voteForTwo
+               
 
             }
 
@@ -122,6 +124,9 @@ class QuestionDetail extends Component {
                             <div>
                                 {votesForOne} out of 3
                        </div>
+                            <div>
+                                {percentOne} %
+                       </div>
 
 
                         </div>
@@ -134,7 +139,9 @@ class QuestionDetail extends Component {
                             <div>
                                 {votesForOne} out of 3
                        </div>
-
+                            <div>
+                                {percentTwo} %
+</div>
 
                         </div>
 
@@ -160,7 +167,7 @@ function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
 
     let question;
 
-    let total, voteForTwo, votesForOne;
+    let total, voteForTwo, votesForOne, percentOne, percentTwo;
 
     const id = ownProps.match.params.id;
 
@@ -168,11 +175,14 @@ function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
         question = questions[id]
 
         votesForOne = question.optionOne.votes.length;
-        voteForTwo = question.optionTwo.votes.length
-
+        voteForTwo = question.optionTwo.votes.length;
         total = question.optionOne.votes.length + question.optionTwo.votes.length;
+        percentOne = (question.optionOne.votes.length / total) * 100;
+        percentTwo = (question.optionTwo.votes.length / total) * 100
+
+   
         return {
-            question, total, voteForTwo, votesForOne
+            question, total, voteForTwo, votesForOne, percentOne, percentTwo
         }
 
     }

@@ -10,7 +10,7 @@ class Leaderboard extends Component {
             const score = Object.keys(user.answers).length + user.questions.length;
 
             return (
-                <div>
+                <div key={user.id}>
 
                     <div className='signIn'>{user.name}</div>
 
