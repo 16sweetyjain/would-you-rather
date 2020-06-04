@@ -4,6 +4,7 @@ import { Link, withRouter, useLocation } from 'react-router-dom';
 import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap'
 import PropTypes from 'prop-types';
 import Navbar from './Navbar';
+import Avatar from './Avatar'
 class Question extends Component {
     constructor(props) {
         super(props);
@@ -13,7 +14,7 @@ class Question extends Component {
     }
 
     loadQuestionDetails(e, questionId) {
-      
+
         let path = `/questions/` + questionId;
         this.props.history.push(path);
     }
@@ -21,20 +22,23 @@ class Question extends Component {
 
     render() {
 
-        const { question } = this.props
+        const { question, avatarId,avatarUrl } = this.props
         const id = this.props.id
+        //console.log(avatar)
 
         return (
             <div>
-                
+
                 <div >
                     <Card >
                         <CardBody>
+                            <div >
+                                <Avatar id={avatarId} avatarUrl={avatarUrl} />
+                            </div>
                             <div>
-                             {question.author} asks
+                                {question.author} asks
                             </div>
                             <div className="signIn">
-
 
                                 <CardTitle>Would you rather</CardTitle>
 
@@ -66,11 +70,19 @@ class Question extends Component {
 }
 
 function mapStateToProps(state, { id }) {
+    const user = state.users;
+
+    const question = state.questions[id]
+    const queAuthor = user[question.author]
+
+    const avatarId = queAuthor.id;
+    const avatarUrl = queAuthor.avatarURL
 
 
     return {
-        question: state.questions[id],
-
+        question,
+        avatarId
+        , avatarUrl
     }
 }
 
