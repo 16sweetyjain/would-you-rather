@@ -1,56 +1,54 @@
-Would You Rather..?
+ ## Would You Rather..?
 
---->This is a React-Redux application targeting a popular game (Would you rather).The user can answer the questions asked by fellow users and see results of their polls.The logged in user can create questions for the game. Leaderboard is implemented to see scores of all users.
+This is a React-Redux application targeting a popular game (Would you rather).The user can answer the questions asked by fellow users and see results of their polls.The logged in user can create questions for the game. Leaderboard is implemented to see scores of all users.
 
-TL;DR
+## TL;DR
 To get started developing right away:
 
--->install all project dependencies with npm install
--->start the development server with npm start
+install all project dependencies with npm install\
+start the development server with npm start
 
 
-What You're Getting
-
-|__README.md(this file)
-|__package.json # npm package manager file.
-|__public
-   |__favicon.ico # React Icon, You may change if you wish.
-   |__index.html # DO NOT MODIFY.
-|__src
-   |__actions #provides all redux actions required in the application.
-      |__authedUser.js # redux actions for authedUser(currently logged in).
-      |__questions.js # redux actions for questions.
-      |__shared.js # redux thunks for dispatching required information from backend.
-      |__users.js #redux actions for users.
-   |__components
-      |__Avatar.js #render image for each user.
-      |__CreateQuestion.js #class component for creating a new question.
-      |__Error.js # class component for showing invalid search results and handling error.
-      |__HomeComponent.js # Home page of the app.
-      |__HomeForHome.js # Home page for displaying answered and unanswered questions.
-      |__Leaderboard.js # Leaderboard page for app displaying scores of each user.
-      |__Navbar.js # Navbar for specifying various routes.
-      |__QuestionComponent.js #Renders a particular question.
-      |__QuestionDetails.js # renders all question related details including poll results.
-      |__RoutesComponent.js #specify all routes used within the app.
-      |__SignInComponent.js # renders login screen for user.
-  |__middleware
-     |__index.js #specifies thunk middleware.
-     |__logger.js # specifies logger file for thunk.
-  |__reducers
-     |__authedUser.js # redux reducer for authedUser related actions.
-     |__index.js # root reducer including all the reducers.
-     |__questionReducer.js # redux reducer for questions related actions.
-     |__userReducer.js #redux reducer for users related actions.
-  |__App.js # This is the root of app.
-  |__App.css #This contains styles for app. 
-  |__ App.test.js # Used for testing. Provided with Create React App.
-  |____DATA.js # A JavaScript API  provided by  Udacity  for backend. Instructions for the methods are below.
-  |__index.css # Global styles.
-  |__index.js #for DOM rendering.
-
-
-
+## What You're Getting
+<pre>
+|_README.md(this file)
+|_package.json # npm package manager file.
+|_public
+  |_favicon.ico # React Icon, You may change if you wish.
+  |_index.html # DO NOT MODIFY.
+|_src
+  |_actions #provides all redux actions required in the application.
+    |_authedUser.js # redux actions for authedUser(currently logged in).
+    |_questions.js # redux actions for questions.
+    |_shared.js # redux thunks for dispatching required information from backend.
+    |_users.js #redux actions for users.
+  |_components
+    |_Avatar.js #render image for each user.
+    |_CreateQuestion.js #class component for creating a new question.
+    |_Error.js # class component for showing invalid search results and handling error.
+    |_HomeComponent.js # Home page of the app.
+    |_HomeForHome.js # Home page for displaying answered and unanswered questions.
+    |_Leaderboard.js # Leaderboard page for app displaying scores of each user.
+    |_Navbar.js # Navbar for specifying various routes.
+    |_QuestionComponent.js #Renders a particular question.
+    |_QuestionDetails.js # renders all question related details including poll results.
+    |_RoutesComponent.js #specify all routes used within the app.
+    |_SignInComponent.js # renders login screen for user.
+  |_middleware
+    |_index.js #specifies thunk middleware.
+    |_logger.js # specifies logger file for thunk.
+  |_reducers
+    |_authedUser.js # redux reducer for authedUser related actions.
+    |_index.js # root reducer including all the reducers.
+    |_questionReducer.js # redux reducer for questions related actions.
+    |_userReducer.js #redux reducer for users related actions.
+  |_App.js # This is the root of app.
+  |_App.css #This contains styles for app. 
+  |_ App.test.js # Used for testing. Provided with Create React App.
+  |_DATA.js # A JavaScript API  provided by  Udacity  for backend. Instructions for the methods are below.
+  |_index.css # Global styles.
+  |_index.js #for DOM rendering.
+</pre>
 
   ## Data
 
