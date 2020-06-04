@@ -44,10 +44,10 @@ class SignIn extends Component {
 
 
                     <select value={this.state.userName} onChange={this.handleChange} >
-                        <option hidden disabled selected value> -- select a user -- </option>
+                        <option hidden disabled value> -- select a user -- </option>
                         {this.props.userId.map((user) => {
                             return (
-                                <option value={user}>{user}</option>
+                                <option  key={user} value={user}>{user}</option>
                             )
                         })}
 

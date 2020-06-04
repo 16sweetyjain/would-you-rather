@@ -13,9 +13,7 @@ class Question extends Component {
     }
 
     loadQuestionDetails(e, questionId) {
-        //  console.log(this.props.history)
-
-
+      
         let path = `/questions/` + questionId;
         this.props.history.push(path);
     }
@@ -23,9 +21,6 @@ class Question extends Component {
 
     render() {
 
-
-
-        // console.log(this.props);
         const { question } = this.props
         const id = this.props.id
 
@@ -79,8 +74,5 @@ function mapStateToProps(state, { id }) {
     }
 }
 
-Question.propTypes = {
-    question: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-};
+
 export default withRouter(connect(mapStateToProps)(Question));

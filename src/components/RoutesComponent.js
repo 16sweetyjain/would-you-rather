@@ -56,11 +56,12 @@ class RoutesComponent extends Component {
                 <Error />
             )
         }
-        if (!this.props.isLogged) {
-            return (
-                <div>
-                    <Switch>
 
+        return (
+            <div>
+                <Switch>
+
+                    {this.props.isLogged ? <Route path='/signIn' exact component={SignIn} /> :
 
                         <React.Fragment>
 
@@ -70,28 +71,19 @@ class RoutesComponent extends Component {
                             <Route exact path='/home_ans' component={HomeiComponent} />
                             <Route exact path='/leaderboard' component={LeaderboardComponent} />
                             <Route path='/questions/:id' component={QuestionDetailsComponent} />
-                            <Route exact path='/signIn' component={SignInComponent} />
-                            <Route path='/error' component={ErrorComponent} />
-                            <Redirect to='/signIn' />
+
+
                         </React.Fragment>
-                    </Switch>
-                </div>
-            );
-        }
-        else {
-            return (
-                <div>
-                    <Switch>
-                        <Route exact path='/signIn' component={SignInComponent} />
-                        <Redirect to='/' />
-
-                    </Switch>
-                </div>
-
-
-            )
-        }
+                    }
+                    <Route component={ErrorComponent} />
+                </Switch>
+            </div>
+        );
     }
+
+
+
+
 }
 
 export default RoutesComponent
