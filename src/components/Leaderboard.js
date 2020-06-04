@@ -35,9 +35,7 @@ class Leaderboard extends Component {
         })
         return (
             <div >
-                <div>
-                    <Navbar />
-                </div>
+                
                 {ans}
             </div>
         )

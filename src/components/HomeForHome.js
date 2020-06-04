@@ -26,9 +26,7 @@ class HomeForHome extends Component {
 
         return (
             <div >
-                <div>
-                    <Navbar/>
-                </div>
+              
                 <div>
                unanswered:->
                     {unans}

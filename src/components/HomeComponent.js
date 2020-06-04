@@ -16,10 +16,7 @@ class Home extends Component {
                     <h1>{autheduser}</h1>
                 </div>
                
-                <div className='home'>
-                   <Navbar/>
-
-                </div>
+               
 
             </div>
 

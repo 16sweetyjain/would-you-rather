@@ -42,9 +42,7 @@ class CreateQuestion extends Component {
 
         return (
             <div>
-                <div>
-                    <Navbar/>
-                </div>
+               
                 <div className='signIn'> asked by {authedUser} </div>
                 <div className='signIn'>
                     <form >

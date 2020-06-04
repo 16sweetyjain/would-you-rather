@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter, useLocation } from 'react-router-dom';
+import { Link, withRouter, useLocation, Redirect } from 'react-router-dom';
 
 import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap';
 import { handleSaveAnswer } from '../actions/shared';
-import Navbar from './Navbar';
+
+import ErrorComponent from './Error';
 class QuestionDetail extends Component {
 
     constructor(props) {
@@ -26,101 +27,114 @@ class QuestionDetail extends Component {
         this.setState({ selected: e.target.value })
     }
     render() {
-
-        const { question, total, voteForTwo, votesForOne } = this.props;
-        const qid = question.id
-
-        console.log(question)
-
-
-
-
-        if (this.state.answer === false) {
+        console.log(this.props)
+        if (this.props === null) {
             return (
-                <div className="signIn">
-                    <div>
-                        <Navbar />
-                    </div>
-                    <div>
-                        {question.author} asks
-                </div>
-                    <div>
-                        <h1> Would you rather </h1>
-                    </div>
-                    <form onSubmit={() => this.handleClick(qid)}>
-                        <div className="radio">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="optionOne"
-                                    checked={this.state.selected === "optionOne"}
-                                    onChange={this.onValueChange}
-
-                                />
-                                {question.optionOne.text}
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input
-                                    type="radio"
-                                    value="optionTwo"
-                                    checked={this.state.selected === "optionTwo"}
-                                    onChange={this.onValueChange}
-                                />
-                                {question.optionTwo.text}
-                            </label>
-                        </div>
-
-
-                        <button className="btn btn-default" type="submit">
-                            Submit
-        </button>
-                    </form>
-                </div>
-            );
+             <Redirect to='error'/>
+            )
         }
+
+
+
+
+
+
         else {
-            return (
-                <div>
-                    <div>
-                        <Navbar />
-                    </div>
-                    <div>
-                        <h1>
-                            Would you rather
-                            </h1>
-                    </div>
+            const { question, total, voteForTwo, votesForOne, isWrong } = this.props;
+            let qid, author, optionOne, optionTwo;
+            if (question != undefined) {
+                qid = question.id
+                author = question.author
+                optionOne = question.optionOne.text
+                optionTwo = question.optionTwo.text
 
-                    <div>
+            }
+
+
+            if (this.state.answer === false) {
+                return (
+                    <div className="signIn">
+                       
                         <div>
-                            {question.optionOne.text}
-
-                        </div>
-
-                        <div>
-                            {votesForOne} out of 3
-                       </div>
-
-
-                    </div>
-
-
-                    <div>
-                        <div>
-                            {question.optionTwo.text}
-                        </div>
-                        <div>
-                            {votesForOne} out of 3
-                       </div>
-
-
-                    </div>
-
-
+                            {author} asks
                 </div>
-            );
+                        <div>
+                            <h1> Would you rather </h1>
+                        </div>
+                        <form onSubmit={() => this.handleClick(qid)}>
+                            <div className="radio">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        value="optionOne"
+                                        checked={this.state.selected === "optionOne"}
+                                        onChange={this.onValueChange}
+
+                                    />
+                                    {optionOne}
+                                </label>
+                            </div>
+                            <div className="radio">
+                                <label>
+                                    <input
+                                        type="radio"
+                                        value="optionTwo"
+                                        checked={this.state.selected === "optionTwo"}
+                                        onChange={this.onValueChange}
+                                    />
+                                    {optionTwo}
+                                </label>
+                            </div>
+
+
+                            <button className="btn btn-default" type="submit">
+                                Submit
+        </button>
+                        </form>
+                    </div>
+                );
+            }
+            else {
+                return (
+                    <div>
+                        
+                        <div>
+                            <h1>
+                                Would you rather
+                            </h1>
+                        </div>
+
+                        <div>
+                            <div>
+                                {question.optionOne.text}
+
+                            </div>
+
+                            <div>
+                                {votesForOne} out of 3
+                       </div>
+
+
+                        </div>
+
+
+                        <div>
+                            <div>
+                                {question.optionTwo.text}
+                            </div>
+                            <div>
+                                {votesForOne} out of 3
+                       </div>
+
+
+                        </div>
+
+
+                    </div>
+                );
+            }
         }
+
 
     }
 
@@ -135,18 +149,27 @@ function financial(x) {
 }
 function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
 
+    let question;
+
+    let total, voteForTwo, votesForOne;
+
     const id = ownProps.match.params.id;
 
+    if (questions[id] != undefined) {
+        question = questions[id]
 
+        votesForOne = question.optionOne.votes.length;
+        voteForTwo = question.optionTwo.votes.length
 
-    const question = questions[id]
-    const votesForOne = question.optionOne.votes.length;
-    const voteForTwo = question.optionTwo.votes.length
-    let total, percOne, percTwo;
-    total = question.optionOne.votes.length + question.optionTwo.votes.length;
+        total = question.optionOne.votes.length + question.optionTwo.votes.length;
+        return {
+            question, total, voteForTwo, votesForOne
+        }
 
-    return {
-        question, total, voteForTwo, votesForOne
+    }
+
+    else {
+        return null
     }
 }
 
