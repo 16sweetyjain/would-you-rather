@@ -66,7 +66,7 @@ class HomeForHome extends Component {
 function mapStateToProps({ users, questions, authedUser }) {
     const user = users[authedUser];
     const uid = user.id
-    // console.log(uid)
+ 
 
     const answered = Object.keys(user.answers)
         .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
