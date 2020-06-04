@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import {formatQuestion} from '../_DATA.js';
+import { formatQuestion } from '../_DATA.js';
 import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions/shared'
+import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
+import Avatar from './Avatar'
+
+
 
 
 class CreateQuestion extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            option1: null, option2: null
+            option1: '', option2: ''
         }
         this.handleOption1 = this.handleOption1.bind(this);
         this.handleOption2 = this.handleOption2.bind(this);
@@ -25,23 +30,29 @@ class CreateQuestion extends Component {
     }
 
     handleCreate() {
-     
-      this.props.addQuestion(this.state.option1,this.state.option2);
+
+        this.props.addQuestion(this.state.option1, this.state.option2);
 
     }
     render() {
 
-   
 
-       const {authedUser}=this.props
+
+        const { authedUser, avatarId, avatarUrl } = this.props
 
 
 
         return (
             <div>
+                <div>
+                    <Navbar />
+                </div>
+                <div>
+                    <Avatar id={avatarId} avatarUrl={avatarUrl} />
+                </div>
                 <div className='signIn'> asked by {authedUser} </div>
                 <div className='signIn'>
-                    <form onSubmit={this.handleSubmit}>
+                    <form >
                         <div className='signIn'>
 
                             <label>
@@ -56,8 +67,9 @@ class CreateQuestion extends Component {
                          <input type="text" name="option2" value={this.state.option2} onChange={this.handleOption2} />
                             </label>
                         </div>
-                        <button className='button' onClick={this.handleCreate} > create question</button>
-
+                        <Link to='/home'>
+                            <button className='button' onClick={this.handleCreate} > create question</button>
+                        </Link>
                     </form>
                 </div>
 
@@ -66,25 +78,28 @@ class CreateQuestion extends Component {
     }
 }
 
-function mapStateToProps({users,questions,authedUser}){
-    return{
+function mapStateToProps({ users, questions, authedUser }) {
+
+    const avatarId = authedUser;
+    const avatarUrl = users[authedUser].avatarURL
+    return {
         authedUser,
-       
-  
+        avatarId, avatarUrl
+
 
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-      addQuestion: (optionOne, optionTwo) => {
-        dispatch(handleAddQuestion(optionOne, optionTwo))
-      }
+        addQuestion: (optionOne, optionTwo) => {
+            dispatch(handleAddQuestion(optionOne, optionTwo))
+        }
     }
-  }
+}
 
 
 
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(CreateQuestion)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateQuestion)

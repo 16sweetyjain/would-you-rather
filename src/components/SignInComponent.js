@@ -19,16 +19,17 @@ class SignIn extends Component {
     handleChange(e) {
         this.setState({ userName: e.target.value });
     }
-    handleSubmit(e) {
+    handleSubmit(e,id) {
+      
         const { authenticate } = this.props;
         authenticate(this.state.userName);
         //e.preventDefault();
     }
 
     render() {
-        //console.log(this.props)
+        console.log(this.props)
 
-
+        const { authedUser } = this.props
         return (
             <div>
               
@@ -43,18 +44,18 @@ class SignIn extends Component {
 
 
 
-                    <select value={this.state.userName} onChange={this.handleChange} >
-                        <option hidden disabled selected value> -- select a user -- </option>
+                    <select   value={this.state.userName} onChange={this.handleChange} >
+                        <option  value=" choose" >Choose one user..</option>
                         {this.props.userId.map((user) => {
                             return (
-                                <option value={user}>{user}</option>
+                                <option  key={user} value={user}>{user}</option>
                             )
                         })}
 
                     </select>
                     <div className='signIn'>
                         <Link to='/home'>
-                            <button onClick={this.handleSubmit}>SignIn</button>
+                            <button onClick={(e)=>this.handleSubmit(e,authedUser)}>SignIn</button>
                         </Link>
 
 
@@ -68,9 +69,9 @@ class SignIn extends Component {
     }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
     return {
-        userId: Object.keys(users)
+        userId: Object.keys(users), authedUser
     }
 }
 

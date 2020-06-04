@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React,{Component} from 'react';
 import Home from '../components/HomeComponent';
 import Create from '../components/CreateQuestion';
@@ -104,3 +105,38 @@ class Navbar extends Component{
 }
 
 export default  connect()(Navbar)
+=======
+import React, { Component } from 'react';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap";
+import { Route, Switch, Redirect, Link } from 'react-router-dom';
+
+class NavbarComp extends Component {
+
+    render() {
+        return (
+            <div>
+                <React.Fragment>
+                <Navbar bg="primary" variant="dark" light expand="md">
+                    <NavItem>
+                        <NavLink tag={Link} to='/home_ans'>Home</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to='/add'>Create</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to='/leaderboard'>Leaderboard</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to='/'>Logout</NavLink>
+                    </NavItem>
+
+
+                </Navbar>
+                </React.Fragment>
+            </div>
+        );
+    }
+}
+
+export default NavbarComp;
+>>>>>>> aff6c718d91de55108f9a11040cffb826318f028

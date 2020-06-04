@@ -7,7 +7,7 @@ import { addUserQuestion, saveUserAnswer } from './users';
 import { addQuestion, saveQuestionAnswer } from './questions';
 
 
-//const AUTHED_ID='tylermcginnis'
+
 
 export function handleInitialStateForUsers() {
     return (dispatch) => {
