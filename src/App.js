@@ -36,7 +36,7 @@ const {isLogged}=this.props
     return (
       <div>
         <React.Fragment>
-          <Navbar />
+         
           <RoutesComponent isLogged={isLogged} />
         </React.Fragment>
 

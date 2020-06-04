@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {formatQuestion} from '../_DATA.js';
+import { formatQuestion } from '../_DATA.js';
 import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions/shared'
 import { Link } from 'react-router-dom';
@@ -28,21 +28,23 @@ class CreateQuestion extends Component {
     }
 
     handleCreate() {
-     
-      this.props.addQuestion(this.state.option1,this.state.option2);
+
+        this.props.addQuestion(this.state.option1, this.state.option2);
 
     }
     render() {
 
-   
 
-       const {authedUser}=this.props
+
+        const { authedUser } = this.props
 
 
 
         return (
             <div>
-               
+                <div>
+                    <Navbar />
+                </div>
                 <div className='signIn'> asked by {authedUser} </div>
                 <div className='signIn'>
                     <form >
@@ -61,7 +63,7 @@ class CreateQuestion extends Component {
                             </label>
                         </div>
                         <Link to='/home'>
-                        <button className='button' onClick={this.handleCreate} > create question</button>
+                            <button className='button' onClick={this.handleCreate} > create question</button>
                         </Link>
                     </form>
                 </div>
@@ -71,25 +73,25 @@ class CreateQuestion extends Component {
     }
 }
 
-function mapStateToProps({users,questions,authedUser}){
-    return{
+function mapStateToProps({ users, questions, authedUser }) {
+    return {
         authedUser,
-       
-  
+
+
 
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-      addQuestion: (optionOne, optionTwo) => {
-        dispatch(handleAddQuestion(optionOne, optionTwo))
-      }
+        addQuestion: (optionOne, optionTwo) => {
+            dispatch(handleAddQuestion(optionOne, optionTwo))
+        }
     }
-  }
+}
 
 
 
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(CreateQuestion)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateQuestion)

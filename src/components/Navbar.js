@@ -19,7 +19,7 @@ class NavbarComp extends Component {
                         <NavLink tag={Link} to='/leaderboard'>Leaderboard</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to='/signIn'>Logout</NavLink>
+                        <NavLink tag={Link} to='/'>Logout</NavLink>
                     </NavItem>
 
 

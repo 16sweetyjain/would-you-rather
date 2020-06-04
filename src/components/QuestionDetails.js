@@ -4,6 +4,7 @@ import { Link, withRouter, useLocation, Redirect } from 'react-router-dom';
 
 import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap';
 import { handleSaveAnswer } from '../actions/shared';
+import Navbar from './Navbar';
 
 import ErrorComponent from './Error';
 class QuestionDetail extends Component {
@@ -30,7 +31,7 @@ class QuestionDetail extends Component {
         console.log(this.props)
         if (this.props === null) {
             return (
-             <Redirect to='error'/>
+                <Redirect to='error' />
             )
         }
 
@@ -54,7 +55,12 @@ class QuestionDetail extends Component {
             if (this.state.answer === false) {
                 return (
                     <div className="signIn">
-                       
+                        <div>
+
+                            <Navbar />
+                        </div>
+
+
                         <div>
                             {author} asks
                 </div>
@@ -97,7 +103,10 @@ class QuestionDetail extends Component {
             else {
                 return (
                     <div>
-                        
+                        <div>
+
+                            <Navbar />
+                        </div>
                         <div>
                             <h1>
                                 Would you rather

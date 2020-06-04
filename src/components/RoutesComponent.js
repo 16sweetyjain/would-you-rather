@@ -61,7 +61,7 @@ class RoutesComponent extends Component {
             <div>
                 <Switch>
 
-                    {this.props.isLogged ? <Route path='/signIn' exact component={SignIn} /> :
+                    {this.props.isLogged ? <Route path='/' exact component={SignInComponent} /> :
 
                         <React.Fragment>
 
@@ -71,7 +71,7 @@ class RoutesComponent extends Component {
                             <Route exact path='/home_ans' component={HomeiComponent} />
                             <Route exact path='/leaderboard' component={LeaderboardComponent} />
                             <Route path='/questions/:id' component={QuestionDetailsComponent} />
-
+                            <Route path='/' exact component={SignInComponent} />
 
                         </React.Fragment>
                     }
