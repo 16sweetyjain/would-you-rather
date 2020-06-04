@@ -1,12 +1,12 @@
 Would You Rather..?
 
---->This is a React-Redux application targeting a popular game (Would you rather).The user can answer the questions asked by fellow users and see results of their polls.The logged in user can create questions for the game. Leaderboard is implemented to see scores of all users.
+--This is a React-Redux application targeting a popular game (Would you rather).The user can answer the questions asked by fellow users and see results of their polls.The logged in user can create questions for the game. Leaderboard is implemented to see scores of all users.
 
 TL;DR
 To get started developing right away:
 
--->install all project dependencies with npm install
--->start the development server with npm start
+--install all project dependencies with npm install
+--start the development server with npm start
 
 
 What You're Getting
