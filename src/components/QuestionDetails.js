@@ -5,6 +5,8 @@ import { Link, withRouter, useLocation, Redirect } from 'react-router-dom';
 import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap';
 import { handleSaveAnswer } from '../actions/shared';
 import Navbar from './Navbar';
+import Avatar from './Avatar'
+
 
 import ErrorComponent from './Error';
 class QuestionDetail extends Component {
@@ -41,7 +43,7 @@ class QuestionDetail extends Component {
 
 
         else {
-            const { question, total, voteForTwo, votesForOne, percentOne, percentTwo } = this.props;
+            const { question, total, voteForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl } = this.props;
             let qid, author, optionOne, optionTwo, total_votes;
             if (question != undefined) {
                 qid = question.id
@@ -49,7 +51,7 @@ class QuestionDetail extends Component {
                 optionOne = question.optionOne.text
                 optionTwo = question.optionTwo.text
                 total_votes = votesForOne + voteForTwo
-               
+
 
             }
 
@@ -61,7 +63,9 @@ class QuestionDetail extends Component {
 
                             <Navbar />
                         </div>
-
+                        <div >
+                            <Avatar id={avatarId} avatarUrl={avatarUrl} />
+                        </div>
 
                         <div>
                             {author} asks
@@ -105,6 +109,9 @@ class QuestionDetail extends Component {
             else {
                 return (
                     <div>
+                        <div >
+                            <Avatar id={avatarId} avatarUrl={avatarUrl} />
+                        </div>
                         <div>
 
                             <Navbar />
@@ -167,12 +174,15 @@ function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
 
     let question;
 
-    let total, voteForTwo, votesForOne, percentOne, percentTwo;
+    let total, voteForTwo, votesForOne, percentOne, queAuthor, percentTwo, avatarId, avatarUrl;
 
     const id = ownProps.match.params.id;
 
     if (questions[id] != undefined) {
         question = questions[id]
+        queAuthor = users[question.author]
+        avatarId = queAuthor.id;
+        avatarUrl = queAuthor.avatarURL
 
         votesForOne = question.optionOne.votes.length;
         voteForTwo = question.optionTwo.votes.length;
@@ -180,9 +190,9 @@ function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
         percentOne = (question.optionOne.votes.length / total) * 100;
         percentTwo = (question.optionTwo.votes.length / total) * 100
 
-   
+
         return {
-            question, total, voteForTwo, votesForOne, percentOne, percentTwo
+            question, total, voteForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl
         }
 
     }

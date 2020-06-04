@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions/shared'
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
+import Avatar from './Avatar'
+
 
 
 
@@ -36,7 +38,7 @@ class CreateQuestion extends Component {
 
 
 
-        const { authedUser } = this.props
+        const { authedUser, avatarId, avatarUrl } = this.props
 
 
 
@@ -44,6 +46,9 @@ class CreateQuestion extends Component {
             <div>
                 <div>
                     <Navbar />
+                </div>
+                <div>
+                    <Avatar id={avatarId} avatarUrl={avatarUrl} />
                 </div>
                 <div className='signIn'> asked by {authedUser} </div>
                 <div className='signIn'>
@@ -74,9 +79,12 @@ class CreateQuestion extends Component {
 }
 
 function mapStateToProps({ users, questions, authedUser }) {
+
+    const avatarId = authedUser;
+    const avatarUrl = users[authedUser].avatarURL
     return {
         authedUser,
-
+        avatarId, avatarUrl
 
 
     }

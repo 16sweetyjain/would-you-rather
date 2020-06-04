@@ -23,6 +23,7 @@ What You're Getting
       |__shared.js # redux thunks for dispatching required information from backend
       |__users.js #redux actions for users
    |__components
+      |__Avatar.js #render image for each user
       |__CreateQuestion.js #class component for creating a new question
       |__Error.js # class component for showing invalid search results and handling error
       |__HomeComponent.js # Home page of the app
