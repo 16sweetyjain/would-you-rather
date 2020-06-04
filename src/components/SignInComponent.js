@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser'
-
+import Navbar from '../components/Navbar';
 
 
 class SignIn extends Component {
@@ -31,6 +31,7 @@ class SignIn extends Component {
 
         return (
             <div>
+              
                 <div className='signIn'>
                     <h3> WELCOME TO THE GAME </h3>
                 </div>
