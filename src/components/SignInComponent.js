@@ -23,11 +23,11 @@ class SignIn extends Component {
       
         const { authenticate } = this.props;
         authenticate(this.state.userName);
-        //e.preventDefault();
+    
     }
 
     render() {
-       // console.log(this.props)
+       
 
         const { authedUser } = this.props
         return (

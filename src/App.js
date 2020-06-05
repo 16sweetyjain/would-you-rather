@@ -3,9 +3,8 @@ import './App.css';
 import { handleInitialStateForUsers } from './actions/shared';
 import { handleInitialStateForQuestions } from './actions/shared';
 import Navbar from './components/Navbar';
-//import RoutesComponent from './components/RoutesComponent';
 import Home from './components/HomeComponent';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Create from './components/CreateQuestion';
 import Leaderboard from './components/Leaderboard';
 import QuestionDetails from './components/QuestionDetails';
@@ -62,7 +61,7 @@ class App extends Component {
 
 
     console.log(this.props)
-    const { isNotLogged, authedUser } = this.props;
+    const { isNotLogged } = this.props;
     return (
       <div>
 

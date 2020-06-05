@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Navbar from './Navbar';
 import { Tab, Tabs, TabList} from 'react-tabs';
 
 import QuestionComponent from './QuestionComponent';
@@ -12,7 +11,7 @@ class Home extends Component {
         }
     }
     render() {
-       // console.log('hi')
+       
         const { answered, unanswered } = this.props;
 
         const ans = answered.map(qid =>{

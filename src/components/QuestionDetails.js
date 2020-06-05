@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Redirect, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { handleSaveAnswer } from '../actions/shared';
 import Avatar from './Avatar';
 class QuestionDetail extends Component {
@@ -30,25 +30,19 @@ class QuestionDetail extends Component {
         this.setState({ selected: e.target.value })
     }
     render() {
-        //console.log(this.state.show)
+     
 
-        const { question, votesForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl, authedUser,answer } = this.props;
-      //  console.log(question)
-        let qid, author, optionOne, optionTwo, total_votes, answered;
-        if (question != undefined) {
+        const { question, votesForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl,answer } = this.props;
+     
+        let qid, author, optionOne, optionTwo, total_votes;
+        if (question !== undefined) {
             qid = question.id
             author = question.author
             optionOne = question.optionOne.text
             optionTwo = question.optionTwo.text
             total_votes = votesForOne + votesForTwo
-            answered = question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)
-
-
+           
         }
-
-
-
-
 
         if (!answer) {
             return (
@@ -180,7 +174,7 @@ function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
     const id = ownProps.match.params.id;
     const answers = users[authedUser].answers;
 
-    if (questions[id] != undefined) {
+    if (questions[id] !== undefined) {
         question = questions[id]
         queAuthor = users[question.author]
         avatarId = queAuthor.id;
