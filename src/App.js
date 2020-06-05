@@ -3,7 +3,7 @@ import './App.css';
 import { handleInitialStateForUsers } from './actions/shared';
 import { handleInitialStateForQuestions } from './actions/shared';
 import Navbar from './components/Navbar';
-import RoutesComponent from './components/RoutesComponent';
+//import RoutesComponent from './components/RoutesComponent';
 import Home from './components/HomeComponent';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Create from './components/CreateQuestion';
@@ -13,13 +13,7 @@ import SignIn from './components/SignInComponent';
 import { connect } from 'react-redux';
 
 
-const PrivateRoute = ({ component: Component, authedUser, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    authedUser === null
-      ? <Redirect component={SignIn} />
-      : <Component {...props} />
-  )} />
-)
+
 class App extends Component {
 
 
@@ -88,10 +82,8 @@ class App extends Component {
 
             <Route path='/home' exact component={HomeComponent} />
             <Route path='/add' component={CreateComponent} />
-
             <Route path='/leaderboard' component={LeaderboardComponent} />
-            <Route path='/questions/:id' component={QuestionDetailsComponent} />
-
+            <Route exact path='/questions/:id' component={QuestionDetailsComponent} />
             <Route path='/logout' component={SignInComponent} />
 
 
