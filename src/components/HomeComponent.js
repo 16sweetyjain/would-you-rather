@@ -12,7 +12,7 @@ class Home extends Component {
         }
     }
     render() {
-        console.log('hi')
+       // console.log('hi')
         const { answered, unanswered } = this.props;
 
         const ans = answered.map(qid =>{
@@ -29,9 +29,7 @@ class Home extends Component {
         
         return (
             <div >
-              <div>
-              <Navbar />
-              </div>
+              
               
               <div>
                   <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex=>this.setState({tabIndex})}>

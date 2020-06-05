@@ -62,16 +62,16 @@ class RoutesComponent extends Component {
         return (
             <div>
                 <Switch>
-                    <Route path='/' exact component={SignInComponent} />
+                    <Route exact path='/' component={SignInComponent} />
 
 
-                    <Route path='/home' render={() => isNotLogged === true ? (<Redirect to='/' />) : (<Home />)} />
-                    <Route path='/add' render={() => isNotLogged === true ? <Redirect to='/' /> : { CreateComponent }} />
+                    <Route exact path='/home'  render={() => isNotLogged === true ? (<Redirect to='/' />) : {HomeComponent}} />
+                    <Route exact path='/add'exact render={() => isNotLogged === true ? <Redirect to='/' /> : { CreateComponent }} />
 
-                    <Route path='/leaderboard' render={() => isNotLogged === true ? <Redirect to='/' /> : { LeaderboardComponent }} />
-                    <Route path='/questions/:id' render={props => isNotLogged ? <Redirect to='/' /> : { QuestionDetailsComponent }} />
+                    <Route exact  path='/leaderboard' render={() => isNotLogged === true ? <Redirect to='/' /> : { LeaderboardComponent }} />
+                    <Route exact path='/questions/:id' render={props => isNotLogged ? <Redirect to='/' /> : { QuestionDetailsComponent }} />
 
-                    <Route path='/logout' render={props => isNotLogged ? <Redirect to='/' /> : { SignInComponent }} />
+                    <Route exact path='/logout' render={props => isNotLogged ? <Redirect to='/' /> : { SignInComponent }} />
 
 
 

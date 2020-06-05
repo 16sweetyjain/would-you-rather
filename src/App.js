@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 import './App.css';
 import { handleInitialStateForUsers } from './actions/shared';
 import { handleInitialStateForQuestions } from './actions/shared';
-import { Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import RoutesComponent from './components/RoutesComponent';
+import Home from './components/HomeComponent';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import Create from './components/CreateQuestion';
+import Leaderboard from './components/Leaderboard';
+import QuestionDetails from './components/QuestionDetails';
+import SignIn from './components/SignInComponent';
 import { connect } from 'react-redux';
 
 
+const PrivateRoute = ({ component: Component, authedUser, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    authedUser === null
+      ? <Redirect component={SignIn} />
+      : <Component {...props} />
+  )} />
+)
 class App extends Component {
 
 
@@ -21,21 +33,75 @@ class App extends Component {
   }
 
   render() {
+    const HomeComponent = () => {
+      return (
+        <Home />
+      )
+    }
+    const SignInComponent = () => {
+      return (
+        <SignIn />
+      )
+
+    }
+    const CreateComponent = () => {
+      return (
+        <Create />
+      );
+    }
+
+
+
+    const LeaderboardComponent = () => {
+      return (
+        <Leaderboard />
+      );
+    }
+
+
+    const QuestionDetailsComponent = () => {
+      return (
+        <QuestionDetails />
+      )
+    }
+
+
 
     console.log(this.props)
-    const { isNotLogged } = this.props;
+    const { isNotLogged, authedUser } = this.props;
     return (
       <div>
 
-
-        < Navbar />
-
-        <Switch>
-
-          <RoutesComponent isNotLogged={isNotLogged} />
+        <Navbar />
 
 
-        </Switch>
+
+        {isNotLogged === true ?
+
+
+          <Route path='/' exact component={SignInComponent} />
+          :
+
+          <Switch>
+
+
+
+            <Route path='/home' exact component={HomeComponent} />
+            <Route path='/add' component={CreateComponent} />
+
+            <Route path='/leaderboard' component={LeaderboardComponent} />
+            <Route path='/questions/:id' component={QuestionDetailsComponent} />
+
+            <Route path='/logout' component={SignInComponent} />
+
+
+
+
+          </Switch>
+        }
+
+
+
 
 
 
@@ -50,7 +116,7 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
   return {
-     isNotLogged: authedUser===null
+    isNotLogged: authedUser === null, authedUser
   }
 }
 
