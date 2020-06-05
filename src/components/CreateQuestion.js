@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { formatQuestion } from '../_DATA.js';
 import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions/shared'
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
 import Avatar from './Avatar'
 
 
@@ -44,9 +42,7 @@ class CreateQuestion extends Component {
 
         return (
             <div>
-                <div>
-                    <Navbar />
-                </div>
+              
                 <div>
                     <Avatar id={avatarId} avatarUrl={avatarUrl} />
                 </div>

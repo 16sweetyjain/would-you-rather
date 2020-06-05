@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAuthedUser } from '../actions/authedUser'
-import Navbar from '../components/Navbar';
+
 
 
 class SignIn extends Component {
@@ -27,7 +27,7 @@ class SignIn extends Component {
     }
 
     render() {
-        console.log(this.props)
+       // console.log(this.props)
 
         const { authedUser } = this.props
         return (

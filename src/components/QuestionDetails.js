@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter, useLocation, Redirect } from 'react-router-dom';
-
-import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap';
+import { withRouter, Redirect } from 'react-router-dom';
 import { handleSaveAnswer } from '../actions/shared';
-import Navbar from './Navbar';
-import Avatar from './Avatar'
-
-
-import ErrorComponent from './Error';
+import Avatar from './Avatar';
 class QuestionDetail extends Component {
 
     constructor(props) {
@@ -43,7 +37,7 @@ class QuestionDetail extends Component {
 
 
         else {
-            const { question, total, voteForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl } = this.props;
+            const { question, voteForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl } = this.props;
             let qid, author, optionOne, optionTwo, total_votes;
             if (question != undefined) {
                 qid = question.id
@@ -59,10 +53,7 @@ class QuestionDetail extends Component {
             if (this.state.answer === false) {
                 return (
                     <div className="signIn">
-                        <div>
-
-                            <Navbar />
-                        </div>
+                      
                         <div >
                             <Avatar id={avatarId} avatarUrl={avatarUrl} />
                         </div>
@@ -112,10 +103,7 @@ class QuestionDetail extends Component {
                         <div >
                             <Avatar id={avatarId} avatarUrl={avatarUrl} />
                         </div>
-                        <div>
-
-                            <Navbar />
-                        </div>
+                 
                         <div>
                             <h1>
                                 Would you rather

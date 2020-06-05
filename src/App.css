@@ -62,7 +62,6 @@
   margin-left: 150px
 }
 
-<<<<<<< HEAD
 .container .box { 
   width:540px; 
   margin:50px; 
@@ -84,10 +83,4 @@
 .container .box .box-cell.box2 { 
   background:lightgreen; 
   text-align:justify 
-=======
-.avatar {
-  height: 50px;
-  border-radius: 25px;
-  margin: 10px;
->>>>>>> aff6c718d91de55108f9a11040cffb826318f028
 }

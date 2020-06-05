@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './HomeComponent';
 import Create from './CreateQuestion';
-import Homi from './HomeForHome'
 import Leaderboard from './Leaderboard';
 import QuestionDetails from './QuestionDetails';
 import SignIn from './SignInComponent'
 import Error from './Error';
 
 class RoutesComponent extends Component {
-    constructor(props) {
-        super(props)
-    }
+
     render() {
+    console.log(this.props)
 
         const HomeComponent = () => {
             return (
@@ -31,10 +29,7 @@ class RoutesComponent extends Component {
             );
         }
 
-        const HomeiComponent = () => {
-            return (<Homi />
-            );
-        }
+
 
         const LeaderboardComponent = () => {
             return (
@@ -51,32 +46,28 @@ class RoutesComponent extends Component {
 
 
 
-        const ErrorComponent = () => {
-            return (
-                <Error />
-            )
-        }
+
+
+        const isNotLogged = this.props.isNotLogged;
 
         return (
             <div>
                 <Switch>
 
-                    {this.props.isLogged ? <Route path='/' exact component={SignInComponent} /> :
-
-                        <React.Fragment>
+                    <Route path='/' component={SignInComponent} />
 
 
-                            <Route exact path='/home' component={HomeComponent} />
-                            <Route exact path='/add' component={CreateComponent} />
-                            <Route exact path='/home_ans' component={HomeiComponent} />
-                            <Route exact path='/leaderboard' component={LeaderboardComponent} />
-                            <Route path='/questions/:id' component={QuestionDetailsComponent} />
-                            <Route path='/' exact component={SignInComponent} />
-                            
+                    <Route path='/home' render={()=>isNotLogged===true ? (<Redirect to='/' />) : (<Home/>)} />
+                    <Route path='/add' render={() => isNotLogged===true ? <Redirect to='/' /> : { CreateComponent }} />
 
-                        </React.Fragment>
-                    }
-                    <Route component={ErrorComponent} />
+                    <Route path='/leaderboard' render={() => isNotLogged===true ? <Redirect to='/' /> : { LeaderboardComponent } }/>
+                    <Route path='/questions/:id' render={props => isNotLogged ? <Redirect to='/' /> : { QuestionDetailsComponent }} />
+
+                    <Route path='/logout' render={props => isNotLogged ? <Redirect to='/' /> : { SignInComponent }} />
+
+                    
+
+
                 </Switch>
             </div>
         );

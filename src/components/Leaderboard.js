@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Navbar from './Navbar';
 import Avatar from './Avatar'
 class Leaderboard extends Component {
     render() {
@@ -39,9 +38,7 @@ class Leaderboard extends Component {
         })
         return (
             <div >
-                <div>
-                    <Navbar />
-                </div>
+               
 
                 {ans}
             </div>

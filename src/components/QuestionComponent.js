@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter, useLocation } from 'react-router-dom';
-import { Card, CardTitle, CardBody, CardText, CardSubtitle } from 'reactstrap'
-import PropTypes from 'prop-types';
-import Navbar from './Navbar';
+import { Link, withRouter } from 'react-router-dom';
+import { Card, CardTitle, CardBody} from 'reactstrap'
 import Avatar from './Avatar'
 class Question extends Component {
     constructor(props) {

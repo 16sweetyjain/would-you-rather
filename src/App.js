@@ -1,33 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-<<<<<<< HEAD
 import { connect } from 'react-redux';
 import { handleInitialStateForUsers } from './actions/shared';
 import { handleInitialStateForQuestions } from './actions/shared';
-import SignIn from './components/SignInComponent'
-import { Route, Switch, Redirect, Link } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
-=======
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { handleInitialStateForUsers } from './actions/shared';
-import { handleInitialStateForQuestions } from './actions/shared';
-import RoutesComponent from './components/RoutesComponent'
-import Navbar from './components/Navbar';
-
-
-
->>>>>>> aff6c718d91de55108f9a11040cffb826318f028
+import RoutesComponent from './components/RoutesComponent';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props)
 
-
-
-  }
 
 
   componentDidMount() {
@@ -38,33 +20,21 @@ class App extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-   
-    
-    const SignInComponent = () => {
-      return (
-        <SignIn />
-      )
 
-    }
-
+console.log(this.props)
+    const { isNotLogged } = this.props;
     return (
       <div>
-  
-    < Navbar/>
-
-=======
 
 
-const {isLogged}=this.props
+        < Navbar />
 
-    return (
-      <div>
-        <React.Fragment>
-         
-          <RoutesComponent isLogged={isLogged} />
-        </React.Fragment>
->>>>>>> aff6c718d91de55108f9a11040cffb826318f028
+        <Switch>
+          <RoutesComponent isNotLogged={isNotLogged} />
+        </Switch>
+
+
+
 
       </div>
 
@@ -76,7 +46,7 @@ const {isLogged}=this.props
 
 function mapStateToProps({ authedUser }) {
   return {
-      isLogged: authedUser === null
+    isNotLogged: authedUser === null
   }
 }
 
