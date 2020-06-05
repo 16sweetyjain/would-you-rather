@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { connect } from 'react-redux';
 import { handleInitialStateForUsers } from './actions/shared';
 import { handleInitialStateForQuestions } from './actions/shared';
 import { Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import RoutesComponent from './components/RoutesComponent';
+import { connect } from 'react-redux';
+
 
 class App extends Component {
 
@@ -21,7 +22,7 @@ class App extends Component {
 
   render() {
 
-console.log(this.props)
+    console.log(this.props)
     const { isNotLogged } = this.props;
     return (
       <div>
@@ -30,9 +31,11 @@ console.log(this.props)
         < Navbar />
 
         <Switch>
-          <RoutesComponent isNotLogged={isNotLogged} />
-        </Switch>
 
+          <RoutesComponent isNotLogged={isNotLogged} />
+
+
+        </Switch>
 
 
 
@@ -44,14 +47,12 @@ console.log(this.props)
 }
 
 
+
 function mapStateToProps({ authedUser }) {
   return {
-    isNotLogged: authedUser === null
+     isNotLogged: authedUser===null
   }
 }
-
-
-
 
 
 
