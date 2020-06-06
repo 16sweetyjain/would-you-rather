@@ -18,8 +18,8 @@ class QuestionDetail extends Component {
     handleClick(qid) {
         //e.preventDefault()
         this.props.handleSave(qid.qid, this.state.selected)
-      
-       
+
+
 
 
 
@@ -30,10 +30,11 @@ class QuestionDetail extends Component {
         this.setState({ selected: e.target.value })
     }
     render() {
-     
 
-        const { question, votesForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl,answer } = this.props;
-     
+
+        const { question, votesForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl, answer } = this.props;
+
+        let poll_selection;
         let qid, author, optionOne, optionTwo, total_votes;
         if (question !== undefined) {
             qid = question.id
@@ -41,7 +42,13 @@ class QuestionDetail extends Component {
             optionOne = question.optionOne.text
             optionTwo = question.optionTwo.text
             total_votes = votesForOne + votesForTwo
-           
+
+        }
+        if (this.state.selected === "optionOne") {
+            poll_selection = optionOne
+        }
+        if (this.state.selected === "optionTwo") {
+            poll_selection = optionTwo
         }
 
         if (!answer) {
@@ -86,12 +93,12 @@ class QuestionDetail extends Component {
                                 </label>
                             </div>
 
-                                <button  disabled={this.state.selected===null}  className="btn btn-default" type="button"
-                                onClick={()=>this.handleClick({qid})}>
-                                    Submit
+                            <button disabled={this.state.selected === null} className="btn btn-default" type="button"
+                                onClick={() => this.handleClick({ qid })}>
+                                Submit
                                  </button>
-                                
-                            
+
+
 
 
                         </form>
@@ -116,7 +123,9 @@ class QuestionDetail extends Component {
                             Would you rather
                             </h1>
                     </div>
-
+                    <div>
+                        <h3>   You polled in favour of "{poll_selection} "</h3>
+                    </div>
                     <div>
                         <div>
                             {optionOne}
@@ -169,7 +178,7 @@ function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
 
     let question;
 
-    let total, votesForTwo, votesForOne, percentOne, queAuthor, percentTwo, avatarId, avatarUrl,answer;
+    let total, votesForTwo, votesForOne, percentOne, queAuthor, percentTwo, avatarId, avatarUrl, answer;
 
     const id = ownProps.match.params.id;
     const answers = users[authedUser].answers;
@@ -188,9 +197,9 @@ function mapStateToProps({ questions, users, authedUser }, { ...ownProps }) {
 
         if (answers.hasOwnProperty(question.id)) {
             answer = answers[question.id]
-          }
+        }
         return {
-            question, total, votesForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl, authedUser,answer
+            question, total, votesForTwo, votesForOne, percentOne, percentTwo, avatarId, avatarUrl, authedUser, answer
         }
 
     }

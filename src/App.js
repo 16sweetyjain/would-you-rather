@@ -4,7 +4,7 @@ import { handleInitialStateForUsers } from './actions/shared';
 import { handleInitialStateForQuestions } from './actions/shared';
 import Navbar from './components/Navbar';
 import Home from './components/HomeComponent';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Create from './components/CreateQuestion';
 import Leaderboard from './components/Leaderboard';
 import QuestionDetails from './components/QuestionDetails';
@@ -58,6 +58,12 @@ class App extends Component {
       )
     }
 
+    const Root=()=>{
+      return(
+        <Redirect to=''/>
+      )
+    }
+
 
 
     console.log(this.props)
@@ -72,22 +78,16 @@ class App extends Component {
         {isNotLogged === true ?
 
 
-          <Route path='/' exact component={SignInComponent} />
+          <Route path='/'  component={SignInComponent} />
           :
 
           <Switch>
-
-
 
             <Route path='/home' exact component={HomeComponent} />
             <Route path='/add' component={CreateComponent} />
             <Route path='/leaderboard' component={LeaderboardComponent} />
             <Route exact path='/questions/:id' component={QuestionDetailsComponent} />
             <Route path='/logout' component={SignInComponent} />
-
-
-
-
           </Switch>
         }
 
